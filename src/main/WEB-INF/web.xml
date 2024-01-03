@@ -1,0 +1,10 @@
+<web-app>
+    <servlet>
+        <servlet-name>ApiServlet</servlet-name>
+        <servlet-class>org.example.ApiServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ApiServlet</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+</web-app>
