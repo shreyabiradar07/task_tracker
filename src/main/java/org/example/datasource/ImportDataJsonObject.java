@@ -78,34 +78,4 @@ public class ImportDataJsonObject {
             this.namespace = namespace;
         }
     }
-
-
-    public static void main(String[] args) {
-        ImportDataJsonObject output = new ImportDataJsonObject();
-        output.setVersion("1.0");
-
-        ClusterGroup clusterGroup = new ClusterGroup();
-        clusterGroup.setClusterGroupName("prometheus");
-
-        Cluster cluster = new Cluster();
-        cluster.setClusterName("k8s-cluster");
-
-        Namespace nameSpace = new Namespace();
-        // Assuming fetchedNamespace is the value obtained from the Prometheus query
-        String fetchedNamespace = "default";
-        nameSpace.setNamespaceName(fetchedNamespace);
-
-        cluster.setNamespace(nameSpace);
-        clusterGroup.setCluster(cluster);
-        output.setClusterGroup(clusterGroup);
-
-        // Convert the Java object to JSON using Gson
-        Gson gson = new Gson();
-        String jsonOutput = gson.toJson(output);
-
-        // Display the generated JSON
-        System.out.println(jsonOutput);
-    }
-
-
 }
