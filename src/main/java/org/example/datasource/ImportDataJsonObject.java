@@ -1,10 +1,9 @@
 package org.example.datasource;
 
-import com.google.gson.Gson;
 
 public class ImportDataJsonObject {
     private String version;
-    private ClusterGroup clusterGroup;
+    private ClusterGroup cluster_group;
 
     public String getVersion() {
         return version;
@@ -15,24 +14,24 @@ public class ImportDataJsonObject {
     }
 
     public ClusterGroup getClusterGroup() {
-        return clusterGroup;
+        return cluster_group;
     }
 
-    public void setClusterGroup(ClusterGroup clusterGroup) {
-        this.clusterGroup = clusterGroup;
+    public void setClusterGroup(ClusterGroup cluster_group) {
+        this.cluster_group = cluster_group;
     }
 
     // Nested classes representing the JSON structure
     public static class ClusterGroup {
-        private String clusterGroupName;
+        private String cluster_group_name;
         private Cluster cluster;
 
         public String getClusterGroupName() {
-            return clusterGroupName;
+            return cluster_group_name;
         }
 
-        public void setClusterGroupName(String clusterGroupName) {
-            this.clusterGroupName = clusterGroupName;
+        public void setClusterGroupName(String cluster_group_name) {
+            this.cluster_group_name = cluster_group_name;
         }
 
         public Cluster getCluster() {
@@ -47,23 +46,23 @@ public class ImportDataJsonObject {
     }
 
     public static class Cluster {
-        private String clusterName;
-        private Namespace nameSpace;
+        private String cluster_name;
+        private Namespace name_space;
 
         public String getClusterName() {
-            return clusterName;
+            return cluster_name;
         }
 
-        public void setClusterName(String clusterName) {
-            this.clusterName = clusterName;
+        public void setClusterName(String cluster_name) {
+            this.cluster_name = cluster_name;
         }
 
         public Namespace getNamespace() {
-            return nameSpace;
+            return name_space;
         }
 
-        public void setNamespace(Namespace nameSpace) {
-            this.nameSpace = nameSpace;
+        public void setNamespace(Namespace name_space) {
+            this.name_space = name_space;
         }
     }
 
@@ -77,5 +76,18 @@ public class ImportDataJsonObject {
         public void setNamespaceName(String namespace) {
             this.namespace = namespace;
         }
+    }
+
+    public static class Workload {
+        private String workload_name;
+        private String workload_type;
+
+        public String getWorkloadName() {return workload_name;}
+
+        public void setWorkloadName(String workload_name) {this.workload_name = workload_name;}
+        public String getWorkloadType() {return workload_type;}
+
+        public void setWorkloadType(String workload_type) {this.workload_type = workload_type;}
+
     }
 }
