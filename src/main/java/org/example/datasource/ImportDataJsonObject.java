@@ -1,6 +1,8 @@
 package org.example.datasource;
 
 
+import java.util.List;
+
 public class ImportDataJsonObject {
     private String version;
     private ClusterGroup cluster_group;
@@ -47,7 +49,7 @@ public class ImportDataJsonObject {
 
     public static class Cluster {
         private String cluster_name;
-        private Namespace name_space;
+        private List<Namespace> namespaces;
 
         public String getClusterName() {
             return cluster_name;
@@ -57,12 +59,12 @@ public class ImportDataJsonObject {
             this.cluster_name = cluster_name;
         }
 
-        public Namespace getNamespace() {
-            return name_space;
+        public List<Namespace> getNamespaces() {
+            return namespaces;
         }
 
-        public void setNamespace(Namespace name_space) {
-            this.name_space = name_space;
+        public void setNamespaces(List<Namespace> namespaces) {
+            this.namespaces = namespaces;
         }
     }
 

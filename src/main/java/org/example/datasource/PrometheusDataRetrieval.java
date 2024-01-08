@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -14,10 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.example.datasource.ImportDataJsonObject;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.Map;
 
 public class PrometheusDataRetrieval {
     private static final Logger LOGGER = LoggerFactory.getLogger(PrometheusDataRetrieval.class);
-
     public PrometheusDataRetrieval(){
         System.out.println("Prometheus instance being invoked");
     }
@@ -47,11 +48,10 @@ public class PrometheusDataRetrieval {
                 // Parse the JSON response from Prometheus to extract namespaces
                 List<String> namespaces = parsePrometheusResponse(response.toString());
 
-                // Create ImportDataJsonObject instances for each namespace
-                for (String namespace : namespaces) {
-                    ImportDataJsonObject importData = createImportDataObject(namespace);
+                // Create a ImportDataJsonObject instance including each namespace
+                    ImportDataJsonObject importData = createImportDataObject(namespaces);
                     importDataList.add(importData);
-                }
+
             } else {
                 System.out.println("Error - HTTP Response Code: " + responseCode);
             }
@@ -100,7 +100,7 @@ public class PrometheusDataRetrieval {
         return namespaces;
     }
 
-    private ImportDataJsonObject createImportDataObject(String fetchedNamespace) {
+    private ImportDataJsonObject createImportDataObject(List<String> namespaces) {
         ImportDataJsonObject output = new ImportDataJsonObject();
         output.setVersion("1.0");
 
@@ -111,11 +111,17 @@ public class PrometheusDataRetrieval {
         ImportDataJsonObject.Cluster cluster = new ImportDataJsonObject.Cluster();
         cluster.setClusterName("k8s-cluster");
 
-        // Set the fetched namespace
-        ImportDataJsonObject.Namespace namespace = new ImportDataJsonObject.Namespace();
-        namespace.setNamespaceName(fetchedNamespace);
+        // Create a list to store multiple Namespace objects
+        List<ImportDataJsonObject.Namespace> namespaceList = new ArrayList<>();
 
-        cluster.setNamespace(namespace);
+        // Set the fetched namespace
+        for (String fetchedNamespace : namespaces) {
+            ImportDataJsonObject.Namespace namespace = new ImportDataJsonObject.Namespace();
+            namespace.setNamespaceName(fetchedNamespace);
+            namespaceList.add(namespace);
+        }
+
+        cluster.setNamespaces(namespaceList);
         clusterGroup.setCluster(cluster);
         output.setClusterGroup(clusterGroup);
 
