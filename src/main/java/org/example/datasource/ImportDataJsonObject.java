@@ -70,13 +70,21 @@ public class ImportDataJsonObject {
 
     public static class Namespace {
         private String namespace;
-
+        private List<Workload> workloads;
         public String getNamespaceName() {
             return namespace;
         }
 
         public void setNamespaceName(String namespace) {
             this.namespace = namespace;
+        }
+
+        public List<Workload> getWorkloads() {
+            return workloads;
+        }
+
+        public void setWorkloads(List<Workload> workloads) {
+            this.workloads = workloads;
         }
     }
 
@@ -87,6 +95,7 @@ public class ImportDataJsonObject {
         public String getWorkloadName() {return workload_name;}
 
         public void setWorkloadName(String workload_name) {this.workload_name = workload_name;}
+
         public String getWorkloadType() {return workload_type;}
 
         public void setWorkloadType(String workload_type) {this.workload_type = workload_type;}
