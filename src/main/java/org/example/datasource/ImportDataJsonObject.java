@@ -91,6 +91,7 @@ public class ImportDataJsonObject {
     public static class Workload {
         private String workload_name;
         private String workload_type;
+        private List<Containers> containers;
 
         public String getWorkloadName() {return workload_name;}
 
@@ -99,6 +100,23 @@ public class ImportDataJsonObject {
         public String getWorkloadType() {return workload_type;}
 
         public void setWorkloadType(String workload_type) {this.workload_type = workload_type;}
+        public List<Containers> getContainers() {
+            return containers;
+        }
+
+        public void setContainers(List<Containers> containers) {
+            this.containers = containers;
+        }
+
+    }
+
+    public static class Containers {
+        private String container_name;
+        private String container_image_name;
+        public String getContainerName() { return container_name;}
+        public void setContainerName(String container_name) {this.container_name = container_name;}
+        public String getContainerImageName() { return container_image_name;}
+        public void setContainerImageName(String container_image_name) {this.container_image_name = container_image_name;}
 
     }
 }
